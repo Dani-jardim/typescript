@@ -1,5 +1,5 @@
-import React from "react";
-import Botao from "../Button";
+import React from 'react';
+import Botao from '../Button';
 import style from './Formulario.module.scss'
 
 class Formulario extends React.Component{
@@ -10,13 +10,14 @@ class Formulario extends React.Component{
           <label htmlFor="tarefa">Adicione uma nova tarefa</label>
           <input 
             type="text"
-            id="nome" 
-            name="nome"
-            placeholder="Digite seu nome"
+            id="tarefa" 
+            name="tarefa"
+            placeholder="Digite sua tarefa"
+            required
             />
         </div>
         <div className={style.inputContainer}>
-        <label>Tempo</label>
+        <label htmlFor='tempo'>Tempo</label>
           <input 
             type="time"
             step="1"
@@ -27,7 +28,6 @@ class Formulario extends React.Component{
             required
           />
         </div>
-    
         <Botao/>
       </form>
     )
