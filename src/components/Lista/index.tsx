@@ -1,12 +1,23 @@
 function Lista() {
+  const tarefas = 
+  [{
+    tarefa:"ler",
+    tempo:"01:00:00",
+  },{
+    tarefa:"treinar",
+    tempo:"03:00:00",
+  }]
+
   return(
     <aside>
       <h2>Estudos do dia</h2>
       <ul>
-        <li>
-          <h3>Estudar react</h3>
+      {tarefas.map((item, index) => (
+        <li key={index}>
+          <h3>{item.tarefa}</h3>
+          <span>{item.tempo}</span>
         </li>
-        <span> 00:00:00</span>
+      ))}
       </ul>
     </aside>
    )
