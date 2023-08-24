@@ -41,8 +41,10 @@
     ]
   },
   "devDependencies": {
+    "@types/uuid": "^9.0.2",
     "resolve-url-loader": "^5.0.0",
     "sass": "^1.66.1",
-    "typescript-plugin-css-modules": "^5.0.1"
+    "typescript-plugin-css-modules": "^5.0.1",
+    "uuid": "^9.0.0"
   }
 }
