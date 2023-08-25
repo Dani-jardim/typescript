@@ -54,7 +54,7 @@ class Formulario extends React.Component<{
             onChange={e => this.setState({...this.state, tempo: e.target.value})}
             id="tempo"
             min="00:00:00" 
-            max="01:30:00"
+            max=""
             required
           />
         </div>
