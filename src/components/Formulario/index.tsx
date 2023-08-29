@@ -1,69 +1,67 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Botao from '../Button';
 import style from './Formulario.module.scss'
 import { Itarefa } from '../../types/tarefas';
 import {v4 as uuidv4 } from 'uuid';
 
-class Formulario extends React.Component<{
+interface Props {
   setTarefas: React.Dispatch<React.SetStateAction <Itarefa[]>>
-}> {
-  state = {
-    tarefa:'',
-    tempo: '00:00',
-  }
-  adicionarTarefa(e: React.FormEvent<HTMLFormElement>) {
+}
+
+function Formulario ({setTarefas}: Props) {
+  const [tarefa, setTarefa] = useState("")
+  const [tempo, setTempo] = useState("00:00")
+  function adicionarTarefa(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    this.props.setTarefas(tarefasAntigas =>
+    setTarefas(tarefasAntigas =>
       [
         ...tarefasAntigas, 
         {
-          ...this.state,
+          tarefa,
+          tempo, 
           selecionado:false,
           completado:false,
           id: uuidv4()
         }
       ] 
     );
-    this.setState({
-      tarefe:'',
-      tempo:'00:00'
-    })
+    setTarefa("")
+    setTempo("00:00")
   }
-  render() {
-    return(
-      <form className={style.novaTarefa} onSubmit={this.adicionarTarefa.bind(this)}>
-        <div className={style.inputContainer}>
-          <label htmlFor="tarefa">Adicione uma nova tarefa</label>
-          <input 
-            type="text"
-            id="tarefa"
-            value={this.state.tarefa}
-            onChange={e => this.setState({...this.state, tarefa: e.target.value})} 
-            name="tarefa"
-            placeholder="Digite sua tarefa"
-            required
-            />
-        </div>
-        <div className={style.inputContainer}>
-        <label htmlFor='tempo'>Tempo</label>
-          <input 
-            type="time"
-            step="1"
-            name="tempo"
-            value={this.state.tempo}
-            onChange={e => this.setState({...this.state, tempo: e.target.value})}
-            id="tempo"
-            min="00:00:00" 
-            max=""
-            required
-          />
-        </div>
-        <Botao 
-          type="submit">
-          Adicionar
-        </Botao>
-      </form>
-    )
-  }
+  return (
+    <form className={style.novaTarefa} onSubmit={adicionarTarefa}>
+    <div className={style.inputContainer}>
+      <label htmlFor="tarefa">Adicione uma nova tarefa</label>
+      <input 
+        type="text"
+        id="tarefa"
+        value={tarefa}
+        onChange={e => setTarefa(e.target.value)} 
+        name="tarefa"
+        placeholder="Digite sua tarefa"
+        required
+        />
+    </div>
+    <div className={style.inputContainer}>
+    <label htmlFor='tempo'>Tempo</label>
+      <input 
+        type="time"
+        step="1"
+        name="tempo"
+        value={tempo}
+        onChange={e => setTempo(e.target.value)}
+        id="tempo"
+        min="00:00:00" 
+        max=""
+        required
+      />
+    </div>
+    <Botao 
+      type="submit">
+      Adicionar
+    </Botao>
+  </form>
+  )
 }
+
 export default Formulario
