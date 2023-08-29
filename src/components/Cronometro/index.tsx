@@ -26,7 +26,7 @@ export default function Cronometro({selecionado}: Props) {
       <div className={style.relogioWrapper}>
         <Relogio tempo={tempo}/>
       </div>
-      <Botao>
+      <Botao onClick={()=>console.log("começando")}>
         Começar
       </Botao>
     </div>
